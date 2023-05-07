@@ -150,7 +150,12 @@ const defineHTML = () => {
 const prohibited = ["twitter.com", "www.instagram.com", "www.reddit.com", "www.youtube.com", "www.facebook.com", "web.facebook.com"];
 const set = new Set(prohibited);
 
-if(set.has(window.location.hostname)){
-    document.head.innerHTML = defineCSS();
-    document.body.innerHTML = defineHTML();
+let currentDate = new Date();
+let currentHour = currentDate.getHours();
+
+if (currentHour >= 8 && currentHour < 12 || currentHour >= 20 && currentHour < 24) {
+    if(set.has(window.location.hostname)){
+        document.head.innerHTML = defineCSS();
+        document.body.innerHTML = defineHTML();
+    }
 }
